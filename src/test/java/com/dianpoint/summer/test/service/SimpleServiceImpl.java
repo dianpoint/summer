@@ -6,8 +6,15 @@ package com.dianpoint.summer.test.service;
  * @date: 2023/3/17 12:55
  */
 public class SimpleServiceImpl implements SimpleService {
+
+    private String propertyName;
+
     @Override
     public void sayHello() {
-        System.out.println("hello world");
+        System.out.println("hello " + propertyName);
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 }

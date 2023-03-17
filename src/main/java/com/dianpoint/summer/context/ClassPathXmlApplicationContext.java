@@ -60,4 +60,19 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
     public void registerBean(String beanName, Object object) {
         this.beanFactory.registerBean(beanName, object);
     }
+
+    @Override
+    public boolean isSingleton(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean isPrototype(String name) {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType(String name) {
+        return null;
+    }
 }

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="simpleService" class="com.dianpoint.summer.test.service.SimpleServiceImpl"/>
+    <bean id="simpleService" class="com.dianpoint.summer.test.service.SimpleServiceImpl">
+        <property type="String" name="propertyName" value="hello world,(this setter method inject)"></property>
+    </bean>
 </beans>

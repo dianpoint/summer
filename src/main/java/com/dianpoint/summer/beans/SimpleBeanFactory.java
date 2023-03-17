@@ -43,8 +43,42 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         this.registerSingleton(beanName, object);
     }
 
+    @Override
+    public boolean isSingleton(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean isPrototype(String name) {
+        return false;
+    }
+
+    @Override
+    public Class<?> getType(String name) {
+        return null;
+    }
+
     public void registerBeanDefinition(BeanDefinition beanDefinition) {
         this.beanDefinitions.put(beanDefinition.getId(), beanDefinition);
     }
 
+    @Override
+    public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
+
+    }
+
+    @Override
+    public void removeBeanDefinition(String name) {
+
+    }
+
+    @Override
+    public BeanDefinition getBeanDefinition(String name) {
+        return null;
+    }
+
+    @Override
+    public boolean containsBeanDefinition(String name) {
+        return false;
+    }
 }

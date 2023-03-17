@@ -22,4 +22,10 @@ public interface BeanFactory {
     boolean containsBean(String name);
 
     void registerBean(String beanName, Object object);
+
+    boolean isSingleton(String name);
+
+    boolean isPrototype(String name);
+
+    Class<?> getType(String name);
 }
