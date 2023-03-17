@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dianpoint.summer</groupId>
-    <artifactId>summer-core</artifactId>
+    <artifactId>summer</artifactId>
     <version>0.1-SNAPSHOT</version>
 
     <properties>
@@ -23,5 +23,13 @@
         </dependency>
 
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/dianpoint/summer</url>
+        </repository>
+    </distributionManagement>
 
 </project>
