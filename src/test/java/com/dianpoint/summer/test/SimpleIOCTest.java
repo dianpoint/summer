@@ -1,5 +1,6 @@
 package com.dianpoint.summer.test;
 
+import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.NoSuchBeanDefinitionException;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
 import com.dianpoint.summer.test.service.SimpleService;
@@ -12,7 +13,7 @@ import com.dianpoint.summer.test.service.SimpleService;
 public class SimpleIOCTest {
 
 
-    public static void main(String[] args) throws NoSuchBeanDefinitionException {
+    public static void main(String[] args) throws BeansException {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
         SimpleService simpleService = (SimpleService)applicationContext.getBean("simpleService");
         simpleService.sayHello();

@@ -2,6 +2,7 @@ package com.dianpoint.summer.context;
 
 import com.dianpoint.summer.beans.BeanDefinition;
 import com.dianpoint.summer.beans.BeanFactory;
+import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.NoSuchBeanDefinitionException;
 import com.dianpoint.summer.beans.SimpleBeanFactory;
 import com.dianpoint.summer.beans.XmlBeanDefinitionReader;
@@ -30,7 +31,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
         // 加载外部xml文件定义为Resource资源
         Resource resource = new ClassPathXmlResource(fileName);
 
-        BeanFactory factory = new SimpleBeanFactory();
+        SimpleBeanFactory factory = new SimpleBeanFactory();
         // 解析BeanDefinition定义
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(factory);
         xmlBeanDefinitionReader.loadBeanDefinitions(resource);
@@ -46,12 +47,17 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
      * @return beanName对应的class实例
      */
     @Override
-    public Object getBean(String beanName) throws NoSuchBeanDefinitionException {
+    public Object getBean(String beanName) throws BeansException {
         return this.beanFactory.getBean(beanName);
     }
 
     @Override
-    public void registerBeanDefinition(BeanDefinition beanDefinition) {
-        this.beanFactory.registerBeanDefinition(beanDefinition);
+    public boolean containsBean(String name) {
+        return this.beanFactory.containsBean(name);
+    }
+
+    @Override
+    public void registerBean(String beanName, Object object) {
+        this.beanFactory.registerBean(beanName, object);
     }
 }
