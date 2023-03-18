@@ -14,7 +14,7 @@ import com.dianpoint.summer.core.Resource;
  * @email: congccoder@gmail.com
  * @date: 2023/3/17 11:59
  */
-public class ClassPathXmlApplicationContext implements BeanFactory {
+public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher {
     private BeanFactory beanFactory;
 
     /**
@@ -63,16 +63,21 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
 
     @Override
     public boolean isSingleton(String name) {
-        return false;
+        return this.beanFactory.isSingleton(name);
     }
 
     @Override
     public boolean isPrototype(String name) {
-        return false;
+        return this.beanFactory.isPrototype(name);
     }
 
     @Override
     public Class<?> getType(String name) {
-        return null;
+        return this.beanFactory.getType(name);
+    }
+
+    @Override
+    public void publisher(ApplicationEvent event) {
+
     }
 }

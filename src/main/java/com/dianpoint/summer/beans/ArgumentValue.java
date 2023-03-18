@@ -1,6 +1,10 @@
 package com.dianpoint.summer.beans;
 
 /**
+ * <p>
+ * 定义BeanDefinition在xml文件中的格式,包括value|type|name属性
+ * </p>
+ * 
  * @author: congcong
  * @email: congccoder@gmail.com
  * @date: 2023/3/17 16:58
@@ -13,12 +17,12 @@ public class ArgumentValue {
 
     private String type;
 
-    public ArgumentValue(Object value, String type) {
+    public ArgumentValue(String type, Object value) {
         this.value = value;
         this.type = type;
     }
 
-    public ArgumentValue(Object value, String name, String type) {
+    public ArgumentValue(String type, String name, Object value) {
         this.value = value;
         this.name = name;
         this.type = type;

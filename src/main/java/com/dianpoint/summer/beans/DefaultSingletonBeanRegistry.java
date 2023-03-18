@@ -12,8 +12,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
-    protected List<String> beanNames = new ArrayList<>();
-    protected Map<String, Object> singletons = new ConcurrentHashMap<>(256);
+    private List<String> beanNames = new ArrayList<>();
+    private Map<String, Object> singletons = new ConcurrentHashMap<>(256);
 
     @Override
     public void registerSingleton(String beanName, Object singletonObject) {

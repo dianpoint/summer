@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
     <bean id="simpleService" class="com.dianpoint.summer.test.service.SimpleServiceImpl">
-        <property type="String" name="propertyName" value="hello world,(this setter method inject)"></property>
+        <!-- 构造器方式注入  -->
+        <constructor-arg type="String" name="name" value="张三"/>
+        <constructor-arg type="int" name="age" value="21"/>
+
+        <!-- 属性property方式注入 setPropertyName  -->
+        <property type="String" name="propertyName" value="hello world,(this setter method inject)"/>
     </bean>
 </beans>

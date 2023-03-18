@@ -13,12 +13,6 @@ public interface BeanFactory {
 
     Object getBean(String beanName) throws BeansException;
 
-    /**
-     *
-     * @param name
-     *            要查询的bean的名称
-     * @return 是否存在指定名称Bean存在
-     */
     boolean containsBean(String name);
 
     void registerBean(String beanName, Object object);
