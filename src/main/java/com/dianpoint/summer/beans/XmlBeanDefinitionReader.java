@@ -3,6 +3,7 @@ package com.dianpoint.summer.beans;
 import com.dianpoint.summer.core.Resource;
 import org.dom4j.Element;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,13 +39,25 @@ public class XmlBeanDefinitionReader {
             // 解析xml文件中property节点 将其映射到PropertyValues中
             List<Element> propertyElements = element.elements("property");
             PropertyValues propertyValues = new PropertyValues();
+            List<String> refs = new ArrayList<>();
             for (Element propertyElement : propertyElements) {
                 // 获取Property节点
                 String propertyType = propertyElement.attributeValue("type");
                 String propertyName = propertyElement.attributeValue("name");
                 String propertyValue = propertyElement.attributeValue("value");
+                String propertyRef = propertyElement.attributeValue("ref");
+                String refValue;
+                boolean isRef = false;
+                // 解析property标签后 获取ref节点参数 并且根据是否存在存在ref参数来设置PropertyValue,通过isRef标记一个bean是否引用了另外的bean
+                if (propertyValue != null && !propertyValue.equals("")) {
+                    refValue = propertyValue;
+                } else {
+                    isRef = true;
+                    refValue = propertyRef;
+                    refs.add(refValue);
+                }
                 // 放入PropertyValues中
-                propertyValues.addPropertyValue(new PropertyValue(propertyType, propertyName, propertyValue));
+                propertyValues.addPropertyValue(new PropertyValue(propertyType, propertyName, refValue, isRef));
             }
             // 将PropertyValues放入BeanDefinition中 以便后续进行实例化
             beanDefinition.setPropertyValues(propertyValues);
@@ -60,6 +73,7 @@ public class XmlBeanDefinitionReader {
                 argumentValues.addArgumentValues(new ArgumentValue(constructorType, constructorName, constructorValue));
             }
             beanDefinition.setConstructorArgumentValues(argumentValues);
+            beanDefinition.setDependsOn(refs.toArray(new String[0]));
             // 正式注册BeanDefinition
             this.simpleBeanFactory.registerBeanDefinition(id, beanDefinition);
         }

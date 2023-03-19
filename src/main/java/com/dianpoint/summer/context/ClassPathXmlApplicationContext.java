@@ -1,9 +1,7 @@
 package com.dianpoint.summer.context;
 
-import com.dianpoint.summer.beans.BeanDefinition;
 import com.dianpoint.summer.beans.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.NoSuchBeanDefinitionException;
 import com.dianpoint.summer.beans.SimpleBeanFactory;
 import com.dianpoint.summer.beans.XmlBeanDefinitionReader;
 import com.dianpoint.summer.core.ClassPathXmlResource;
@@ -15,7 +13,11 @@ import com.dianpoint.summer.core.Resource;
  * @date: 2023/3/17 11:59
  */
 public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher {
-    private BeanFactory beanFactory;
+    private SimpleBeanFactory beanFactory;
+
+    public ClassPathXmlApplicationContext(String fileName) {
+        this(fileName, true);
+    }
 
     /**
      * 
@@ -26,8 +28,10 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
      *
      * @param fileName
      *            外部xml配置文件
+     * @param isRefresh
+     *            是否刷新Bean
      */
-    public ClassPathXmlApplicationContext(String fileName) {
+    public ClassPathXmlApplicationContext(String fileName, boolean isRefresh) {
         // 加载外部xml文件定义为Resource资源
         Resource resource = new ClassPathXmlResource(fileName);
 
@@ -37,6 +41,9 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
         xmlBeanDefinitionReader.loadBeanDefinitions(resource);
         // 创建BeanFactory
         this.beanFactory = factory;
+        if (isRefresh) {
+            this.beanFactory.refresh();
+        }
     }
 
     /**

@@ -30,19 +30,6 @@ public class PropertyValues {
         this.propertyValueList.add(propertyValue);
     }
 
-    /**
-     * 设置propertyValue
-     * 
-     * @param propertyType
-     *            属性类型
-     * @param propertyName
-     *            属性名称
-     * @param propertyValue
-     *            属性值
-     */
-    public void addPropertyValue(String propertyType, String propertyName, Object propertyValue) {
-        addPropertyValue(new PropertyValue(propertyType, propertyName, propertyValue));
-    }
 
     public boolean isEmpty() {
         return this.propertyValueList.isEmpty();
