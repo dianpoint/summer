@@ -8,4 +8,6 @@ package com.dianpoint.summer.test.service;
 public interface SimpleService {
 
     void sayHello();
+
+    void sayBye();
 }

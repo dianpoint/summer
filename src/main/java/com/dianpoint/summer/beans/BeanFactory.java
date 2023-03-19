@@ -11,7 +11,15 @@ package com.dianpoint.summer.beans;
  */
 public interface BeanFactory {
 
-    Object getBean(String beanName) throws NoSuchBeanDefinitionException;
+    Object getBean(String beanName) throws BeansException;
 
-    void registerBeanDefinition(BeanDefinition beanDefinition);
+    boolean containsBean(String name);
+
+    void registerBean(String beanName, Object object);
+
+    boolean isSingleton(String name);
+
+    boolean isPrototype(String name);
+
+    Class<?> getType(String name);
 }
