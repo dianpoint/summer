@@ -13,7 +13,7 @@ public class BeanDefinition {
     String SCOPE_SINGLETON = "singleton";
     String SCOPE_PROTOTYPE = "prototype";
 
-    private boolean lazyInit = false;
+    private boolean lazyInit = true;
     private String[] dependsOn;
     private ArgumentValues constructorArgumentValues;
     private PropertyValues propertyValues;

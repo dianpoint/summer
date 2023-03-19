@@ -11,4 +11,12 @@ public class OtherTwoService {
     void sayBye(){
         simpleService.sayBye();
     }
+
+    public SimpleService getSimpleService() {
+        return simpleService;
+    }
+
+    public void setSimpleService(SimpleService simpleService) {
+        this.simpleService = simpleService;
+    }
 }

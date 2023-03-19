@@ -9,4 +9,11 @@ public class OtherOneService {
         otherTwoService.sayHello();
     }
 
+    public OtherTwoService getOtherTwoService() {
+        return otherTwoService;
+    }
+
+    public void setOtherTwoService(OtherTwoService otherTwoService) {
+        this.otherTwoService = otherTwoService;
+    }
 }

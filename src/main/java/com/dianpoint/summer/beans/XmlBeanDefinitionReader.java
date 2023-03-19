@@ -36,33 +36,7 @@ public class XmlBeanDefinitionReader {
             String className = element.attributeValue("class");
             BeanDefinition beanDefinition = new BeanDefinition(id, className);
 
-            // 解析xml文件中property节点 将其映射到PropertyValues中
-            List<Element> propertyElements = element.elements("property");
-            PropertyValues propertyValues = new PropertyValues();
-            List<String> refs = new ArrayList<>();
-            for (Element propertyElement : propertyElements) {
-                // 获取Property节点
-                String propertyType = propertyElement.attributeValue("type");
-                String propertyName = propertyElement.attributeValue("name");
-                String propertyValue = propertyElement.attributeValue("value");
-                String propertyRef = propertyElement.attributeValue("ref");
-                String refValue;
-                boolean isRef = false;
-                // 解析property标签后 获取ref节点参数 并且根据是否存在存在ref参数来设置PropertyValue,通过isRef标记一个bean是否引用了另外的bean
-                if (propertyValue != null && !propertyValue.equals("")) {
-                    refValue = propertyValue;
-                } else {
-                    isRef = true;
-                    refValue = propertyRef;
-                    refs.add(refValue);
-                }
-                // 放入PropertyValues中
-                propertyValues.addPropertyValue(new PropertyValue(propertyType, propertyName, refValue, isRef));
-            }
-            // 将PropertyValues放入BeanDefinition中 以便后续进行实例化
-            beanDefinition.setPropertyValues(propertyValues);
-
-            // 获取constructor-arg节点
+            // 处理constructor-arg节点
             List<Element> constructorElements = element.elements("constructor-arg");
             ArgumentValues argumentValues = new ArgumentValues();
             for (Element constructorElement : constructorElements) {
@@ -73,7 +47,35 @@ public class XmlBeanDefinitionReader {
                 argumentValues.addArgumentValues(new ArgumentValue(constructorType, constructorName, constructorValue));
             }
             beanDefinition.setConstructorArgumentValues(argumentValues);
+
+            // 解析properties中属性
+            List<Element> propertyElements = element.elements("property");
+            PropertyValues propertyValues = new PropertyValues();
+
+            List<String> refs = new ArrayList<>();
+            for (Element propertyElement : propertyElements) {
+                // 获取Property节点
+                String propertyType = propertyElement.attributeValue("type");
+                String propertyName = propertyElement.attributeValue("name");
+                String propertyValue = propertyElement.attributeValue("value");
+                String propertyRef = propertyElement.attributeValue("ref");
+                String refValue = "";
+                boolean isRef = false;
+                // 解析property标签后 获取ref节点参数 并且根据是否存在存在ref参数来设置PropertyValue,通过isRef标记一个bean是否引用了另外的bean
+                if (propertyValue != null && !propertyValue.equals("")) {
+                    refValue = propertyValue;
+                } else if (propertyRef != null && !propertyRef.equals("")) {
+                    isRef = true;
+                    refValue = propertyRef;
+                    refs.add(refValue);
+                }
+                // 放入PropertyValues中
+                propertyValues.addPropertyValue(new PropertyValue(propertyType, propertyName, refValue, isRef));
+            }
+            // 将PropertyValues放入BeanDefinition中 以便后续进行实例化
+            beanDefinition.setPropertyValues(propertyValues);
             beanDefinition.setDependsOn(refs.toArray(new String[0]));
+
             // 正式注册BeanDefinition
             this.simpleBeanFactory.registerBeanDefinition(id, beanDefinition);
         }
