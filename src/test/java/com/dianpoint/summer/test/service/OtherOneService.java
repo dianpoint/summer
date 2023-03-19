@@ -5,7 +5,7 @@ public class OtherOneService {
     private OtherTwoService otherTwoService;
 
     public void sayHello() {
-        System.out.println("Other One Service");
+        System.out.printf("%s: Other One Service %n", getClass().getName());
         otherTwoService.sayHello();
     }
 

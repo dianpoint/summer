@@ -4,11 +4,11 @@ public class OtherTwoService {
 
     private SimpleService simpleService;
 
-    void sayHello() {
-        System.out.println("Other two Service");
+    public void sayHello() {
+        System.out.printf("%s: Other two Service%n", getClass().getName());
     }
 
-    void sayBye(){
+    public void sayBye() {
         simpleService.sayBye();
     }
 

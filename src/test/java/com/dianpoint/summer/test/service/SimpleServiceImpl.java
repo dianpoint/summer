@@ -9,8 +9,8 @@ public class SimpleServiceImpl implements SimpleService {
 
     private String propertyName;
 
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
 
     private OtherOneService otherOneService;
 
@@ -21,17 +21,16 @@ public class SimpleServiceImpl implements SimpleService {
 
     @Override
     public void sayHello() {
-        System.out.println("hello: " + propertyName);
         // 打印通过构造器方式注入的属性name 和 age
-        System.out.printf("name:%s,age:%s%n", name, age);
-        System.out.println("================");
+        System.out.printf("name:%s, age:%s, propertyName:%s %n", name, age, propertyName);
 
         otherOneService.sayHello();
+
     }
 
     @Override
     public void sayBye() {
-        System.out.println("SimpleServiceImpl bye");
+        System.out.printf("%s: bye bye%n", getClass().getName());
     }
 
     public void setPropertyName(String propertyName) {
