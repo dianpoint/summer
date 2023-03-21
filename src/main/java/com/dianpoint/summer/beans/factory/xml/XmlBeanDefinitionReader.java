@@ -1,5 +1,10 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.xml;
 
+import com.dianpoint.summer.beans.*;
+import com.dianpoint.summer.beans.factory.config.BeanDefinition;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
+import com.dianpoint.summer.beans.factory.support.SimpleBeanFactory;
 import com.dianpoint.summer.core.Resource;
 import org.dom4j.Element;
 
@@ -38,15 +43,15 @@ public class XmlBeanDefinitionReader {
 
             // 处理constructor-arg节点
             List<Element> constructorElements = element.elements("constructor-arg");
-            ArgumentValues argumentValues = new ArgumentValues();
+            ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
             for (Element constructorElement : constructorElements) {
                 String constructorType = constructorElement.attributeValue("type");
                 String constructorName = constructorElement.attributeValue("name");
                 String constructorValue = constructorElement.attributeValue("value");
 
-                argumentValues.addArgumentValues(new ArgumentValue(constructorType, constructorName, constructorValue));
+                constructorArgumentValues.addArgumentValues(new ConstructorArgumentValue(constructorType, constructorName, constructorValue));
             }
-            beanDefinition.setConstructorArgumentValues(argumentValues);
+            beanDefinition.setConstructorArgumentValues(constructorArgumentValues);
 
             // 解析properties中属性
             List<Element> propertyElements = element.elements("property");

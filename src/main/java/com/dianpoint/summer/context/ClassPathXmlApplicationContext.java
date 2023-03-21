@@ -2,8 +2,8 @@ package com.dianpoint.summer.context;
 
 import com.dianpoint.summer.beans.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.SimpleBeanFactory;
-import com.dianpoint.summer.beans.XmlBeanDefinitionReader;
+import com.dianpoint.summer.beans.factory.support.SimpleBeanFactory;
+import com.dianpoint.summer.beans.factory.xml.XmlBeanDefinitionReader;
 import com.dianpoint.summer.core.ClassPathXmlResource;
 import com.dianpoint.summer.core.Resource;
 
