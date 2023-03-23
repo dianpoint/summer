@@ -24,9 +24,9 @@ import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
     implements ConfigurableBeanFactory, BeanDefinitionRegistry {
 
-    private Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
+    protected Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
 
-    private List<String> beanDefinitionNames = new ArrayList<>();
+    protected List<String> beanDefinitionNames = new ArrayList<>();
 
     private Map<String, Object> earlySingletonObjects = new ConcurrentHashMap<>(16);
 
