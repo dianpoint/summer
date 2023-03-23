@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dianpoint.summer.beans.BeansException;
+import com.dianpoint.summer.beans.factory.annotation.Autowired;
 import com.dianpoint.summer.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
 
@@ -21,11 +22,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return this.beanPostProcessors;
     }
 
-    public void addBeanPostProcessor(AutowiredAnnotationBeanPostProcessor beanPostProcessor) {
+    @Override
+    public void addBeanPostProcessor(BeanPostProcessor beanPostProcessor) {
         this.beanPostProcessors.remove(beanPostProcessor);
         this.beanPostProcessors.add(beanPostProcessor);
     }
 
+    @Override
     public int getBeanPostProcessorCount() {
         return this.beanPostProcessors.size();
     }
@@ -61,5 +64,20 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
             }
         }
         return result;
+    }
+
+    @Override
+    public void registerDependentBean(String beanName, String dependentBeanName) {
+
+    }
+
+    @Override
+    public String[] getDependentBeans(String beanName) {
+        return new String[0];
+    }
+
+    @Override
+    public String[] getDependenciesForBean(String beanName) {
+        return new String[0];
     }
 }

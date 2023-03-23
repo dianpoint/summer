@@ -3,6 +3,7 @@ package com.dianpoint.summer.beans.factory.support;
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.factory.config.AbstractAutowireCapableBeanFactory;
 import com.dianpoint.summer.beans.factory.config.BeanDefinition;
+import com.dianpoint.summer.beans.factory.config.BeanPostProcessor;
 import com.dianpoint.summer.beans.factory.config.ConfigurableListableBeanFactory;
 
 import java.util.ArrayList;
