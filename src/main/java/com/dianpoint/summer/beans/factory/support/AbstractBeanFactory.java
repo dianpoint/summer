@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.dianpoint.summer.beans.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.PropertyValue;
 import com.dianpoint.summer.beans.PropertyValues;
 import com.dianpoint.summer.beans.factory.config.BeanDefinition;
+import com.dianpoint.summer.beans.factory.config.ConfigurableBeanFactory;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
 
@@ -22,7 +22,7 @@ import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
  * @date: 2023/3/17 14:35
  */
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
-    implements BeanFactory, BeanDefinitionRegistry {
+    implements ConfigurableBeanFactory, BeanDefinitionRegistry {
 
     private Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
 
@@ -57,7 +57,7 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
                 singleton = createBean(beanDefinition);
                 this.registerBean(beanName, singleton);
                 // beanPostProcessorBeforeInitialization执行
-                applyBeanPostProcessorBeforeInitialization(singleton, beanName);
+                applyBeanPostProcessorsBeforeInitialization(singleton, beanName);
 
                 // initMethod
                 if (beanDefinition.getInitMethodName() != null) {
@@ -84,9 +84,9 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
         }
     }
 
-    public abstract Object applyBeanPostProcessorBeforeInitialization(Object existingBean, String beanName);
+    public abstract Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName);
 
-    public abstract Object applyBeanPostProcessorAfterInitialization(Object existingBean, String beanName);
+    public abstract Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName);
 
     @Override
     public boolean containsBean(String name) {

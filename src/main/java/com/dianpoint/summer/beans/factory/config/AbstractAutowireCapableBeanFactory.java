@@ -1,20 +1,23 @@
-package com.dianpoint.summer.beans.factory.support;
-
-import com.dianpoint.summer.beans.BeansException;
+package com.dianpoint.summer.beans.factory.config;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.dianpoint.summer.beans.BeansException;
+import com.dianpoint.summer.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
+import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
 
 /**
  * @author: github/ccoderJava
  * @email: congccoder@gmail.com
  * @date: 2023/3/21 22:35
  */
-public class AutowiredCapableBeanFactory extends AbstractBeanFactory {
+public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFactory
+    implements AutowireCapableBeanFactory {
 
-    private final List<AutowiredAnnotationBeanPostProcessor> beanPostProcessors = new ArrayList<>();
+    private final List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
 
-    public List<AutowiredAnnotationBeanPostProcessor> getBeanPostProcessors() {
+    public List<BeanPostProcessor> getBeanPostProcessors() {
         return this.beanPostProcessors;
     }
 
@@ -28,9 +31,9 @@ public class AutowiredCapableBeanFactory extends AbstractBeanFactory {
     }
 
     @Override
-    public Object applyBeanPostProcessorBeforeInitialization(Object existingBean, String beanName) {
+    public Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName) {
         Object result = existingBean;
-        for (AutowiredAnnotationBeanPostProcessor beanPostProcessor : this.getBeanPostProcessors()) {
+        for (BeanPostProcessor beanPostProcessor : this.getBeanPostProcessors()) {
             beanPostProcessor.setBeanFactory(this);
             try {
                 result = beanPostProcessor.postProcessBeforeInitialization(result, beanName);
@@ -45,9 +48,9 @@ public class AutowiredCapableBeanFactory extends AbstractBeanFactory {
     }
 
     @Override
-    public Object applyBeanPostProcessorAfterInitialization(Object existingBean, String beanName) {
+    public Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName) {
         Object result = existingBean;
-        for (AutowiredAnnotationBeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
+        for (BeanPostProcessor beanPostProcessor : getBeanPostProcessors()) {
             try {
                 result = beanPostProcessor.postProcessAfterInitialization(result, beanName);
                 if (result == null) {

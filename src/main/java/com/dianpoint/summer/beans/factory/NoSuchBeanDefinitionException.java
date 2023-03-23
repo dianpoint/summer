@@ -1,4 +1,4 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory;
 
 /**
  * @author: congcong

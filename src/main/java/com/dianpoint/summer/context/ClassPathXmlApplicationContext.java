@@ -1,11 +1,15 @@
 package com.dianpoint.summer.context;
 
-import com.dianpoint.summer.beans.BeanFactory;
+import com.dianpoint.summer.beans.factory.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.factory.support.SimpleBeanFactory;
+import com.dianpoint.summer.beans.factory.config.BeanFactoryPostProcessor;
+import com.dianpoint.summer.beans.factory.support.DefaultListableBeanFactory;
 import com.dianpoint.summer.beans.factory.xml.XmlBeanDefinitionReader;
 import com.dianpoint.summer.core.ClassPathXmlResource;
 import com.dianpoint.summer.core.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: congcong
@@ -13,7 +17,9 @@ import com.dianpoint.summer.core.Resource;
  * @date: 2023/3/17 11:59
  */
 public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher {
-    private SimpleBeanFactory beanFactory;
+    private DefaultListableBeanFactory beanFactory;
+
+    private List<BeanFactoryPostProcessor> beanFactoryPostProcessors = new ArrayList<>();
 
     public ClassPathXmlApplicationContext(String fileName) {
         this(fileName, true);
@@ -35,7 +41,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
         // 加载外部xml文件定义为Resource资源
         Resource resource = new ClassPathXmlResource(fileName);
 
-        SimpleBeanFactory factory = new SimpleBeanFactory();
+        DefaultListableBeanFactory factory = new DefaultListableBeanFactory();
         // 解析BeanDefinition定义
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(factory);
         xmlBeanDefinitionReader.loadBeanDefinitions(resource);

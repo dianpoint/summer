@@ -4,7 +4,7 @@ import com.dianpoint.summer.beans.*;
 import com.dianpoint.summer.beans.factory.config.BeanDefinition;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
-import com.dianpoint.summer.beans.factory.support.SimpleBeanFactory;
+import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
 import com.dianpoint.summer.core.Resource;
 import org.dom4j.Element;
 
@@ -22,10 +22,10 @@ import java.util.List;
  */
 public class XmlBeanDefinitionReader {
 
-    private SimpleBeanFactory simpleBeanFactory;
+    private AbstractBeanFactory beanFactory;
 
-    public XmlBeanDefinitionReader(SimpleBeanFactory simpleBeanFactory) {
-        this.simpleBeanFactory = simpleBeanFactory;
+    public XmlBeanDefinitionReader(AbstractBeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
     }
 
     /**
@@ -82,7 +82,7 @@ public class XmlBeanDefinitionReader {
             beanDefinition.setDependsOn(refs.toArray(new String[0]));
 
             // 正式注册BeanDefinition
-            this.simpleBeanFactory.registerBeanDefinition(id, beanDefinition);
+            this.beanFactory.registerBeanDefinition(id, beanDefinition);
         }
     }
 }

@@ -1,7 +1,8 @@
-package com.dianpoint.summer.beans.factory.support;
+package com.dianpoint.summer.beans.factory.annotation;
 
+import com.dianpoint.summer.beans.factory.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.factory.annotation.Autowired;
+import com.dianpoint.summer.beans.factory.config.BeanPostProcessor;
 
 import java.lang.reflect.Field;
 
@@ -12,7 +13,7 @@ import java.lang.reflect.Field;
  */
 public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
 
-    private AutowiredCapableBeanFactory beanFactory;
+    private BeanFactory beanFactory;
 
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
@@ -41,11 +42,13 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor {
         return null;
     }
 
-    public AutowiredCapableBeanFactory getBeanFactory() {
-        return beanFactory;
-    }
-
-    public void setBeanFactory(AutowiredCapableBeanFactory beanFactory) {
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) {
         this.beanFactory = beanFactory;
     }
+
+    public BeanFactory getBeanFactory() {
+        return this.beanFactory;
+    }
+
 }

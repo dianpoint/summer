@@ -1,5 +1,6 @@
-package com.dianpoint.summer.beans.factory.support;
+package com.dianpoint.summer.beans.factory.config;
 
+import com.dianpoint.summer.beans.factory.BeanFactory;
 import com.dianpoint.summer.beans.BeansException;
 
 /**
@@ -30,5 +31,7 @@ public interface BeanPostProcessor {
      * @return result
      */
     Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException;
+
+    void setBeanFactory(BeanFactory beanFactory);
 
 }
