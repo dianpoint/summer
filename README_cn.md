@@ -1,6 +1,6 @@
 # Summer
 
-English | [中文](README_cn.md)
+[English](README.md) | 中文
 
 [//]: # (porject shields)
 [![Contributors][contributors-shield]][contributors-url]
@@ -19,40 +19,38 @@ English | [中文](README_cn.md)
     <a href="https://github.com/dianpoint/summer"><strong>Summer Docs >></strong> </a>
     <br>
     <br>
-    <a href="https://github.com/dianpoint/summer">View Demo</a>
+    <a href="https://github.com/dianpoint/summer">查看演示</a>
     ·
-    <a href="https://github.com/dianpoint/summer/issues">Report Bug</a>
+    <a href="https://github.com/dianpoint/summer/issues">报告Bug</a>
     ·
-    <a href="https://github.com/dianpoint/summer/issues">Request Feature</a>
+    <a href="https://github.com/dianpoint/summer/issues">新特性</a>
 </div>
 
+<!-- TOC -->
+
+* [项目简介](#项目简介)
+* [入门指南](#入门指南)
+    * [预备知识](#预备知识)
+    * [安装](#安装)
+* [用法](#用法)
+* [计划](#计划)
+* [贡献代码](#贡献代码)
+* [开源许可](#开源许可)
+* [联系我们](#联系我们)
 
 <!-- TOC -->
 
-* [Summer](#summer)
-    * [About The Project](#about-the-project)
-    * [Getting Started](#getting-started)
-        * [Prerequisites](#prerequisites)
-        * [Installation](#installation)
-    * [Usage](#usage)
-    * [Roadmap](#roadmap)
-    * [Contributing](#contributing)
-    * [License](#license)
-    * [Contact](#contact)
+## 项目简介
 
-<!-- TOC -->
+## 入门指南
 
-## About The Project
+### 预备知识
 
-## Getting Started
+### 安装
 
-### Prerequisites
+## 用法
 
-### Installation
-
-## Usage
-
-## Roadmap
+## 计划
 
 - [x] xxx
 - [x] xxx
@@ -61,16 +59,15 @@ English | [中文](README_cn.md)
     - [ ] xxx
     - [ ] xxx
 
-See the [issues](https://github/dianpoint/summer/issues) for a full list of proposed features and known issues.
+有关建议功能和已知问题的完整列表，请参考[issues](https://github/dianpoint/summer/issues)
 
-## Contributing
+## 贡献代码
 
-## License
+## 开源许可
 
-`Summer` distributed under the [`Apache License 2.0`](https://github.com/dianpoint/summer/blob/main/LICENSE) License.
-See `License.txt` for more information.
+`Summer` 基于[Apache License 2.0](https://github.com/dianpoint/summer/blob/main/LICENSE)许可证。查看`License.txt`获取更多信息。
 
-## Contact
+## 联系我们
 
 + Email: [congccoder@gmail.com](mailto://congccoder@gmail.com)
 + Github: [https://github.com/ccoderJava](https://github.com/ccoderJava)
