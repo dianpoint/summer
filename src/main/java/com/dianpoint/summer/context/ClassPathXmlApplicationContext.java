@@ -1,22 +1,23 @@
 package com.dianpoint.summer.context;
 
-import com.dianpoint.summer.beans.factory.BeanFactory;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.dianpoint.summer.beans.BeansException;
+import com.dianpoint.summer.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import com.dianpoint.summer.beans.factory.config.BeanFactoryPostProcessor;
+import com.dianpoint.summer.beans.factory.config.ConfigurableListableBeanFactory;
 import com.dianpoint.summer.beans.factory.support.DefaultListableBeanFactory;
 import com.dianpoint.summer.beans.factory.xml.XmlBeanDefinitionReader;
 import com.dianpoint.summer.core.ClassPathXmlResource;
 import com.dianpoint.summer.core.Resource;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author: congcong
  * @email: congccoder@gmail.com
  * @date: 2023/3/17 11:59
  */
-public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationEventPublisher {
+public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     private DefaultListableBeanFactory beanFactory;
 
     private List<BeanFactoryPostProcessor> beanFactoryPostProcessors = new ArrayList<>();
@@ -48,25 +49,17 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
         // 创建BeanFactory
         this.beanFactory = factory;
         if (isRefresh) {
-            this.beanFactory.refresh();
+            try {
+                refresh();
+            } catch (BeansException e) {
+                e.printStackTrace();
+            }
         }
     }
 
-    /**
-     * 对外暴露获取Bean方法,从容器中获取Bean
-     *
-     * @param beanName
-     *            beanName
-     * @return beanName对应的class实例
-     */
     @Override
-    public Object getBean(String beanName) throws BeansException {
-        return this.beanFactory.getBean(beanName);
-    }
-
-    @Override
-    public boolean containsBean(String name) {
-        return this.beanFactory.containsBean(name);
+    public DefaultListableBeanFactory getBeanFactory() {
+        return this.beanFactory;
     }
 
     @Override
@@ -91,6 +84,44 @@ public class ClassPathXmlApplicationContext implements BeanFactory, ApplicationE
 
     @Override
     public void publisher(ApplicationEvent event) {
+        this.getApplicationEventPublisher().publisher(event);
+    }
+
+    @Override
+    public void addApplicationListener(ApplicationListener listener) {
+        getApplicationEventPublisher().addApplicationListener(listener);
+    }
+
+    @Override
+    public void finishRefresh() {
+        publisher(new ContextRefreshEvent("Application context refreshed finish"));
+    }
+
+    @Override
+    public void registerListeners() {
+        ApplicationListener applicationListener = new ApplicationListener();
+        this.getApplicationEventPublisher().addApplicationListener(applicationListener);
+    }
+
+    @Override
+    public void initApplicationEventPublisher() {
+        ApplicationEventPublisher applicationEventPublisher = new SimpleApplicationEventPublisher();
+        this.setApplicationEventPublisher(applicationEventPublisher);
+    }
+
+    @Override
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) {
 
     }
+
+    @Override
+    public void registerBeanPostProcessors(ConfigurableListableBeanFactory configurableListableBeanFactory) {
+        this.beanFactory.addBeanPostProcessor(new AutowiredAnnotationBeanPostProcessor());
+    }
+
+    @Override
+    public void onRefresh() {
+        this.beanFactory.refresh();
+    }
+
 }

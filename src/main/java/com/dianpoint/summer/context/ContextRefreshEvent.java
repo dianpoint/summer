@@ -1,17 +1,11 @@
 package com.dianpoint.summer.context;
 
-import java.util.EventObject;
-
 /**
  * @author: congcong
  * @email: congccoder@gmail.com
- * @date: 2023/3/17 16:10
+ * @date: 2023/3/24 14:31
  */
-public class ApplicationEvent extends EventObject {
-    private static final long serialVersionUID = 1L;
-
-    protected String message = null;
-
+public class ContextRefreshEvent extends ApplicationEvent {
     /**
      * Constructs a prototypical Event.
      *
@@ -20,8 +14,12 @@ public class ApplicationEvent extends EventObject {
      * @throws IllegalArgumentException
      *             if source is null.
      */
-    public ApplicationEvent(Object source) {
+    public ContextRefreshEvent(Object source) {
         super(source);
-        this.message = source.toString();
+    }
+
+    @Override
+    public String toString() {
+        return this.message;
     }
 }
