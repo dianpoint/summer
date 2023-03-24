@@ -1,6 +1,6 @@
 # Summer
 
-English | [中文](README_cn.md)
+[English](README.md) | 中文 
 
 [//]: # (porject shields)
 [![Contributors][contributors-shield]][contributors-url]
