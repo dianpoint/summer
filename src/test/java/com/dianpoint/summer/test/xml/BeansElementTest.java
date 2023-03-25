@@ -2,6 +2,8 @@ package com.dianpoint.summer.test.xml;
 
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
+import com.dianpoint.summer.test.xml.beans.PropertiesTestBean;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,21 +15,35 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 public class BeansElementTest {
 
+    static ClassPathXmlApplicationContext applicationContext;
+
+    @BeforeClass
+    public static void init(){
+         applicationContext = new ClassPathXmlApplicationContext("xml/beanElement.xml");
+    }
+
 
     @Test
     public void getBean_commonCase() throws BeansException {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("xml/beanElement.xml");
-        Object theFool = applicationContext.getBean("theFool");
+        final Object theFool = applicationContext.getBean("theFool");
 
-        assertThat(theFool).isInstanceOf(String.class);
+        assertThat(theFool).isInstanceOf(String.class).isEqualTo("theFool");
     }
 
     @Test
     public void getBean_UppercaseCase() throws BeansException {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("xml/beanElement.xml");
         // 严格beanName区分大小写,所以"THEFOOL"会报空指针
         assertThatThrownBy(()->applicationContext.getBean("THEFOOL")).isInstanceOf(NullPointerException.class);
+    }
 
+
+    @Test
+    public void getBean_propertiesCommonCase() throws BeansException {
+        final PropertiesTestBean theFool = (PropertiesTestBean)applicationContext.getBean("propertiesBean");
+        assertThat(theFool.getAge()).isEqualTo(30);
+        assertThat(theFool.getPassword()).isBlank();
+        assertThat(theFool.getUsername()).isEqualTo("propertiesBean");
+        assertThat(theFool.getSex()).isZero();
     }
 
 
@@ -43,4 +59,7 @@ public class BeansElementTest {
 //        assertThat(theFool).isInstanceOf(Integer.class);
 //
 //    }
+
+
+
 }
