@@ -1,4 +1,4 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.config;
 
 /**
  * <p>
@@ -9,7 +9,7 @@ package com.dianpoint.summer.beans;
  * @email: congccoder@gmail.com
  * @date: 2023/3/17 16:58
  */
-public class ArgumentValue {
+public class ConstructorArgumentValue {
 
     private Object value;
 
@@ -17,12 +17,12 @@ public class ArgumentValue {
 
     private String type;
 
-    public ArgumentValue(String type, Object value) {
+    public ConstructorArgumentValue(String type, Object value) {
         this.value = value;
         this.type = type;
     }
 
-    public ArgumentValue(String type, String name, Object value) {
+    public ConstructorArgumentValue(String type, String name, Object value) {
         this.value = value;
         this.name = name;
         this.type = type;

@@ -8,4 +8,6 @@ package com.dianpoint.summer.context;
 public interface ApplicationEventPublisher {
 
     void publisher(ApplicationEvent event);
+
+    void addApplicationListener(ApplicationListener listener);
 }

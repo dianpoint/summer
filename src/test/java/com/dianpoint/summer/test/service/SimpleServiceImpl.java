@@ -1,5 +1,7 @@
 package com.dianpoint.summer.test.service;
 
+import com.dianpoint.summer.beans.factory.annotation.Autowired;
+
 /**
  * @author: congcong
  * @email: congccoder@gmail.com
@@ -12,6 +14,7 @@ public class SimpleServiceImpl implements SimpleService {
     private final String name;
     private final int age;
 
+    @Autowired
     private OtherOneService otherOneService;
 
     public SimpleServiceImpl(String name, int age) {
@@ -36,12 +39,12 @@ public class SimpleServiceImpl implements SimpleService {
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
     }
-
-    public OtherOneService getOtherOneService() {
-        return otherOneService;
-    }
-
-    public void setOtherOneService(OtherOneService otherOneService) {
-        this.otherOneService = otherOneService;
-    }
+//
+//    public OtherOneService getOtherOneService() {
+//        return otherOneService;
+//    }
+//
+//    public void setOtherOneService(OtherOneService otherOneService) {
+//        this.otherOneService = otherOneService;
+//    }
 }

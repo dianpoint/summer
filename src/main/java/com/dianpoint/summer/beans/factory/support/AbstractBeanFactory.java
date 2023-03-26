@@ -1,26 +1,36 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.support;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.dianpoint.summer.beans.BeansException;
+import com.dianpoint.summer.beans.PropertyValue;
+import com.dianpoint.summer.beans.PropertyValues;
+import com.dianpoint.summer.beans.factory.config.BeanDefinition;
+import com.dianpoint.summer.beans.factory.config.ConfigurableBeanFactory;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
+
 /**
  * @author: congcong
  * @email: congccoder@gmail.com
  * @date: 2023/3/17 14:35
  */
-public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory, BeanDefinitionRegistry {
+public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
+    implements ConfigurableBeanFactory, BeanDefinitionRegistry {
 
-    private Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
+    protected Map<String, BeanDefinition> beanDefinitions = new ConcurrentHashMap<>(256);
 
-    private List<String> beanDefinitionNames = new ArrayList<>();
+    protected List<String> beanDefinitionNames = new ArrayList<>();
 
     private Map<String, Object> earlySingletonObjects = new ConcurrentHashMap<>(16);
 
-    public SimpleBeanFactory() {}
+    public AbstractBeanFactory() {}
 
     /**
      * 对于refresh方法进行刷新Bean处理。本质上是对于所有的beanName分别进行getBean处理
@@ -46,10 +56,13 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 // 根据beanDefinition创建得到的单例实例化对象
                 singleton = createBean(beanDefinition);
                 this.registerBean(beanName, singleton);
-                // beanPostProcessor方法进行执行
-                // postProcessBeforeInitialization
-                // afterPropertiesSet
+                // beanPostProcessorBeforeInitialization执行
+                applyBeanPostProcessorsBeforeInitialization(singleton, beanName);
+
                 // initMethod
+                if (beanDefinition.getInitMethodName() != null) {
+                    invokeInitMethod(beanDefinition, singleton);
+                }
                 // postProcessAfterInitialization
             }
         }
@@ -59,6 +72,21 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         }
         return singleton;
     }
+
+    private void invokeInitMethod(BeanDefinition beanDefinition, Object singleton) {
+        Class<?> clazz = beanDefinition.getClass();
+        Method method = null;
+        try {
+            method = clazz.getMethod(beanDefinition.getInitMethodName());
+            method.invoke(singleton);
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public abstract Object applyBeanPostProcessorsBeforeInitialization(Object existingBean, String beanName);
+
+    public abstract Object applyBeanPostProcessorsAfterInitialization(Object existingBean, String beanName);
 
     @Override
     public boolean containsBean(String name) {
@@ -147,29 +175,30 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             clazz = Class.forName(beanDefinition.getClassName());
 
             // 处理构造函数
-            ArgumentValues argumentValues = beanDefinition.getConstructorArgumentValues();
-            if (!argumentValues.isEmpty()) {
+            ConstructorArgumentValues constructorArgumentValues = beanDefinition.getConstructorArgumentValues();
+            if (!constructorArgumentValues.isEmpty()) {
                 // 定义构造函数中参数类型、参数值的数组
-                Class<?>[] paramTypes = new Class<?>[argumentValues.getArgumentCount()];
-                Object[] paramValues = new Object[argumentValues.getArgumentCount()];
+                Class<?>[] paramTypes = new Class<?>[constructorArgumentValues.getArgumentCount()];
+                Object[] paramValues = new Object[constructorArgumentValues.getArgumentCount()];
 
-                for (int i = 0; i < argumentValues.getArgumentCount(); i++) {
-                    ArgumentValue argumentValue = argumentValues.getIndexedArgumentValue(i);
+                for (int i = 0; i < constructorArgumentValues.getArgumentCount(); i++) {
+                    ConstructorArgumentValue constructorArgumentValue =
+                        constructorArgumentValues.getIndexedArgumentValue(i);
                     // 根据参数数据类型进行逐个处理
-                    if ("String".equals(argumentValue.getType())
-                        || "java.lang.String".equals(argumentValue.getType())) {
+                    if ("String".equals(constructorArgumentValue.getType())
+                        || "java.lang.String".equals(constructorArgumentValue.getType())) {
                         paramTypes[i] = String.class;
-                        paramValues[i] = argumentValue.getValue();
-                    } else if ("Integer".equals(argumentValue.getType())
-                        || "java.lang.Integer".equals(argumentValue.getType())) {
+                        paramValues[i] = constructorArgumentValue.getValue();
+                    } else if ("Integer".equals(constructorArgumentValue.getType())
+                        || "java.lang.Integer".equals(constructorArgumentValue.getType())) {
                         paramTypes[i] = Integer.class;
-                        paramValues[i] = Integer.valueOf((String)argumentValue.getValue());
-                    } else if ("int".equals(argumentValue.getType())) {
+                        paramValues[i] = Integer.valueOf((String)constructorArgumentValue.getValue());
+                    } else if ("int".equals(constructorArgumentValue.getType())) {
                         paramTypes[i] = int.class;
-                        paramValues[i] = Integer.valueOf((String)argumentValue.getValue());
+                        paramValues[i] = Integer.valueOf((String)constructorArgumentValue.getValue());
                     } else {
                         paramTypes[i] = String.class;
-                        paramValues[i] = argumentValue.getValue();
+                        paramValues[i] = constructorArgumentValue.getValue();
                     }
                 }
                 constructor = clazz.getConstructor(paramTypes);
