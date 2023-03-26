@@ -4,6 +4,11 @@
     <bean id="theFool" class="java.lang.String">
         <constructor-arg value="theFool"/>
     </bean>
+    <!-- 基础的测试 -->
+    <bean id="theMagician" class="java.lang.String">
+        <constructor-arg value="theFool"/>
+    </bean>
+
 
     <!-- 如果存在环境信息，则会以此为准 -->
 <!--    <beans profile="dev">-->
@@ -25,8 +30,17 @@
 <!--            <type>java.lang.Integer</type>-->
 <!--            <value>30</value>-->
 <!--        </property>-->
-        <!-- bean未提供set方法，所以无法注入 -->
+        <!-- 未提供set方法，所以无法注入 -->
 <!--        <property name="remark" value="remark"/>-->
+    </bean>
+
+
+
+    <bean id="propertiesBeanRef" class="com.dianpoint.summer.test.xml.beans.PropertiesTestBean">
+        <!-- 把theFool赋值给username -->
+        <!-- 把theFool赋值给password -->
+        <property type="String" name="username" ref="theFool"/>
+        <property type="String" name="password" ref="theFool"/>
     </bean>
 
 

@@ -46,6 +46,12 @@ public class BeansElementTest {
         assertThat(theFool.getSex()).isZero();
     }
 
+    @Test
+    public void getBean_propertiesRefCase() throws BeansException {
+        final PropertiesTestBean theFool = (PropertiesTestBean)applicationContext.getBean("propertiesBeanRef");
+        assertThat(theFool.getUsername()).isEqualTo("theFool");
+    }
+
 
 //  环境相关
 //    @Test
