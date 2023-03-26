@@ -1,4 +1,6 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory;
+
+import com.dianpoint.summer.beans.BeansException;
 
 /**
  * <p>

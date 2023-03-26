@@ -1,4 +1,6 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.support;
+
+import com.dianpoint.summer.beans.factory.config.SingletonBeanRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
     @Override
     public String[] getSingletonNames() {
-        return (String[])this.beanNames.toArray();
+        return this.beanNames.toArray(new String[this.beanNames.size()]);
     }
 
     protected void removeSingleton(String beanName) {

@@ -1,5 +1,10 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.xml;
 
+import com.dianpoint.summer.beans.*;
+import com.dianpoint.summer.beans.factory.config.BeanDefinition;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
+import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
 import com.dianpoint.summer.core.Resource;
 import org.dom4j.Element;
 
@@ -17,10 +22,10 @@ import java.util.List;
  */
 public class XmlBeanDefinitionReader {
 
-    private SimpleBeanFactory simpleBeanFactory;
+    private AbstractBeanFactory beanFactory;
 
-    public XmlBeanDefinitionReader(SimpleBeanFactory simpleBeanFactory) {
-        this.simpleBeanFactory = simpleBeanFactory;
+    public XmlBeanDefinitionReader(AbstractBeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
     }
 
     /**
@@ -38,15 +43,15 @@ public class XmlBeanDefinitionReader {
 
             // 处理constructor-arg节点
             List<Element> constructorElements = element.elements("constructor-arg");
-            ArgumentValues argumentValues = new ArgumentValues();
+            ConstructorArgumentValues constructorArgumentValues = new ConstructorArgumentValues();
             for (Element constructorElement : constructorElements) {
                 String constructorType = constructorElement.attributeValue("type");
                 String constructorName = constructorElement.attributeValue("name");
                 String constructorValue = constructorElement.attributeValue("value");
 
-                argumentValues.addArgumentValues(new ArgumentValue(constructorType, constructorName, constructorValue));
+                constructorArgumentValues.addArgumentValues(new ConstructorArgumentValue(constructorType, constructorName, constructorValue));
             }
-            beanDefinition.setConstructorArgumentValues(argumentValues);
+            beanDefinition.setConstructorArgumentValues(constructorArgumentValues);
 
             // 解析properties中属性
             List<Element> propertyElements = element.elements("property");
@@ -77,7 +82,7 @@ public class XmlBeanDefinitionReader {
             beanDefinition.setDependsOn(refs.toArray(new String[0]));
 
             // 正式注册BeanDefinition
-            this.simpleBeanFactory.registerBeanDefinition(id, beanDefinition);
+            this.beanFactory.registerBeanDefinition(id, beanDefinition);
         }
     }
 }

@@ -1,4 +1,7 @@
-package com.dianpoint.summer.beans;
+package com.dianpoint.summer.beans.factory.config;
+
+import com.dianpoint.summer.beans.PropertyValues;
+import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
 
 /**
  * <p>
@@ -15,7 +18,7 @@ public class BeanDefinition {
 
     private boolean lazyInit = true;
     private String[] dependsOn;
-    private ArgumentValues constructorArgumentValues;
+    private ConstructorArgumentValues constructorArgumentValues;
     private PropertyValues propertyValues;
     private String initMethodName;
     private volatile Object beanClass;
@@ -45,11 +48,11 @@ public class BeanDefinition {
         this.dependsOn = dependsOn;
     }
 
-    public ArgumentValues getConstructorArgumentValues() {
+    public ConstructorArgumentValues getConstructorArgumentValues() {
         return constructorArgumentValues;
     }
 
-    public void setConstructorArgumentValues(ArgumentValues constructorArgumentValues) {
+    public void setConstructorArgumentValues(ConstructorArgumentValues constructorArgumentValues) {
         this.constructorArgumentValues = constructorArgumentValues;
     }
 

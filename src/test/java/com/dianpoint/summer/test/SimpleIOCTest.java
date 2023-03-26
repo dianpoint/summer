@@ -1,7 +1,6 @@
 package com.dianpoint.summer.test;
 
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.NoSuchBeanDefinitionException;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
 import com.dianpoint.summer.test.service.OtherTwoService;
 import com.dianpoint.summer.test.service.SimpleService;
