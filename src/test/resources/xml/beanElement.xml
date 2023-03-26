@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <!-- 基础的测试 -->
+    <bean id="theFool" class="java.lang.String">
+        <constructor-arg value="theFool"/>
+    </bean>
+
+    <!-- 如果存在环境信息，则会以此为准 -->
+<!--    <beans profile="dev">-->
+<!--        <bean name="theFool" class="java.lang.Integer">-->
+<!--            <constructor-arg value="10"/>-->
+<!--        </bean>-->
+<!--    </beans>-->
+
+
+    <bean id="propertiesBean" class="com.dianpoint.summer.test.xml.beans.PropertiesTestBean">
+        <!-- 默认为string -->
+        <property name="username" value="propertiesBean"/>
+        <property name="age" type="java.lang.Integer" value='30'/>
+        <property name="sex" type="int" value='0'/>
+        <property name="password"/>
+
+        <!-- 不支持此种写法 -->
+<!--        <property name="age" type="java.lang.Integer">-->
+<!--            <type>java.lang.Integer</type>-->
+<!--            <value>30</value>-->
+<!--        </property>-->
+        <!-- bean未提供set方法，所以无法注入 -->
+<!--        <property name="remark" value="remark"/>-->
+    </bean>
+
+
+
+</beans>

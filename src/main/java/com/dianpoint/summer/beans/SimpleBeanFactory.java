@@ -211,10 +211,12 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                     // 普通值类型
                     if ("String".equals(pType) || "java.lang.String".equals(pType)) {
                         paramTypes[0] = String.class;
-                    } else if ("Integer".equals(pType) || "java.lang.String".equals(pType)) {
+                    } else if ("Integer".equals(pType) || "java.lang.Integer".equals(pType)) {
                         paramTypes[0] = Integer.class;
+                        pValue =  Integer.valueOf(pValue+"");
                     } else if ("int".equals(pType)) {
                         paramTypes[0] = int.class;
+                        pValue = Integer.valueOf(pValue+"");
                     } else {
                         // TODO: 2023/3/18 此处对于数据类型需要逐个处理 此处仅仅建立框架 后续完善 兜底String类型处理
                         paramTypes[0] = String.class;
