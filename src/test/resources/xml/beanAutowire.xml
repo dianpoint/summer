@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="simpleService" class="com.dianpoint.summer.test.service.SimpleServiceImpl">
+    <bean id="baseService" class="com.dianpoint.summer.test.xml.beans.BaseService">
         <!-- 构造器方式注入  -->
-        <constructor-arg type="String" name="name" value="张三"/>
-        <constructor-arg type="int" name="age" value="21"/>
-
-        <!-- 属性property方式注入 setPropertyName  -->
-        <property type="String" name="propertyName" value="hello world,(this setter method inject)"/>
-
-        <!-- 属性对象注入  -->
-<!--        <property type="com.dianpoint.summer.test.service.OtherOneService" name="otherOneService"-->
-<!--                  ref="otherOneService"/>-->
     </bean>
 
-    <bean id="otherOneService" class="com.dianpoint.summer.test.service.OtherOneService">
-        <property type="com.dianpoint.summer.test.service.OtherTwoService" name="otherTwoService"
-                  ref="otherTwoService"/>
+    <bean id="autowiredService" class="com.dianpoint.summer.test.xml.beans.AutowiredService">
+        <!-- 构造器方式注入  -->
     </bean>
-    <bean id="otherTwoService" class="com.dianpoint.summer.test.service.OtherTwoService">
-        <property type="com.dianpoint.summer.test.service.SimpleService" name="simpleService" ref="simpleService"/>
-    </bean>
-
 </beans>
