@@ -1,6 +1,5 @@
 package com.dianpoint.summer.test.beans;
 
-import com.dianpoint.summer.beans.factory.BeanFactory;
 import com.dianpoint.summer.beans.factory.config.SingletonBeanRegistry;
 import com.dianpoint.summer.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
