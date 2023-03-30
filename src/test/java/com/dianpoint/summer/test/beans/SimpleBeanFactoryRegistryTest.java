@@ -19,8 +19,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class SimpleBeanFactoryRegistryTest extends AbstractBeanRegistryTest {
 
-    private final String LOCK = this.getClass().getName() + "_LOCK";
-
     DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
 
     /**
