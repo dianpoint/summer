@@ -1,7 +1,6 @@
 package com.dianpoint.summer.beans.factory.config;
 
 import com.dianpoint.summer.beans.PropertyValues;
-import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;
 
 /**
  * <p>
