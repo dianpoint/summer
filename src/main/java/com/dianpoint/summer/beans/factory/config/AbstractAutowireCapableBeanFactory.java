@@ -1,12 +1,10 @@
 package com.dianpoint.summer.beans.factory.config;
 
+import com.dianpoint.summer.beans.BeansException;
+import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.factory.annotation.Autowired;
-import com.dianpoint.summer.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
-import com.dianpoint.summer.beans.factory.support.AbstractBeanFactory;
 
 /**
  * @author: github/ccoderJava
