@@ -1,6 +1,5 @@
 package com.dianpoint.summer.test.beans;
 
-import com.dianpoint.summer.beans.factory.BeanFactory;
 import com.dianpoint.summer.beans.factory.config.SingletonBeanRegistry;
 import com.dianpoint.summer.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
@@ -19,8 +18,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @date 2023/3/26
  */
 public class SimpleBeanFactoryRegistryTest extends AbstractBeanRegistryTest {
-
-    private final String LOCK = this.getClass().getName() + "_LOCK";
 
     DefaultListableBeanFactory defaultListableBeanFactory = new DefaultListableBeanFactory();
 
