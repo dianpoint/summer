@@ -13,6 +13,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fasterxml.jackson.version>2.14.2</fasterxml.jackson.version>
+        <servlet-api.version>2.5</servlet-api.version>
     </properties>
 
     <dependencies>
@@ -47,6 +48,14 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${fasterxml.jackson.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>${servlet-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
 
         <!--test-->
