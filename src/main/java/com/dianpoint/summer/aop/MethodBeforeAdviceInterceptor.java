@@ -7,7 +7,7 @@ package com.dianpoint.summer.aop;
  */
 public class MethodBeforeAdviceInterceptor implements MethodInterceptor {
 
-    private MethodBeforeAdvice advice;
+    private final MethodBeforeAdvice advice;
 
     public MethodBeforeAdviceInterceptor(MethodBeforeAdvice advice) {
         this.advice = advice;

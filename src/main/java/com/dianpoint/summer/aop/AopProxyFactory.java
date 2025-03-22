@@ -9,11 +9,10 @@ public interface AopProxyFactory {
 
     /**
      * 创建AopProxy
-     * 
-     * @param target
-     *            被代理类
-     * @return aopProxy代理接口,提供不同代理方式
+     *
+     * @param target 被代理类
+     * @return aopProxy代理接口, 提供不同代理方式
      */
-    AopProxy createAopProxy(Object target);
+    AopProxy createAopProxy(Object target, Advisor advisor);
 
 }

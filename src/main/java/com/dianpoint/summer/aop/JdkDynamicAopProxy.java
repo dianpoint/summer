@@ -6,7 +6,7 @@ import java.lang.reflect.Proxy;
 
 /**
  * JDK Dynamic Proxy 实现AOP
- * 
+ *
  * @author: github/ccoderJava
  * @email: congccoder@gmail.com
  * @date: 2023/3/26 21:04
@@ -14,9 +14,11 @@ import java.lang.reflect.Proxy;
 public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 
     Object target;
+    Advisor advisor;
 
-    public JdkDynamicAopProxy(Object target) {
+    public JdkDynamicAopProxy(Object target, Advisor advisor) {
         this.target = target;
+        this.advisor = advisor;
     }
 
     @Override
@@ -26,9 +28,12 @@ public class JdkDynamicAopProxy implements AopProxy, InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        System.out.println("代理类执行之前");
-        Object invokeResult = method.invoke(target, args);
-        System.out.println("代理类执行之后");
-        return invokeResult;
+        if (method.getName().equals("doAction")) {
+            Class<?> targetClass = target != null ? target.getClass() : null;
+            MethodInterceptor interceptor = this.advisor.getMethodInterceptor();
+            ReflectiveMethodInvocation invocation = new ReflectiveMethodInvocation(proxy, target, method, args, targetClass);
+            return interceptor.invoke(invocation);
+        }
+        return null;
     }
 }
