@@ -29,7 +29,6 @@
 
 
     <!--    aop拦截器-->
-    <bean id="myInterceptor" class="com.dianpoint.summer.test.service.TracingInterceptor"/>
     <bean id="realaction" class="com.dianpoint.summer.test.service.ActionOne"/>
     <bean id="action" class="com.dianpoint.summer.aop.ProxyFactoryBean">
         <property type="java.lang.Object" name="target" ref="realaction"/>

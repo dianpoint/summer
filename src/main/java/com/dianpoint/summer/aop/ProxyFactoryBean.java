@@ -35,14 +35,22 @@ public class ProxyFactoryBean implements FactoryBean<Object> {
 
     private synchronized void initializeAdvisor() {
         Object advice = null;
-        MethodInvocation methodInvocation = null;
+        MethodInterceptor methodInterceptor = null;
         try {
             advice = this.beanFactory.getBean(this.interceptorName);
         } catch (BeansException e) {
             e.printStackTrace();
         }
+        if (advice instanceof BeforeAdvice) {
+            methodInterceptor = new MethodBeforeAdviceInterceptor((MethodBeforeAdvice) advice);
+        } else if (advice instanceof AfterAdvice) {
+            methodInterceptor = new AfterReturningAdviceInterceptor((AfterReturningAdvice) advice);
+        } else if (advice instanceof MethodInterceptor) {
+            methodInterceptor = (MethodInterceptor) advice;
+        }
+
         advisor = new DefaultAdvisor();
-        advisor.setMethodInterceptor((MethodInterceptor) advice);
+        advisor.setMethodInterceptor(methodInterceptor);
     }
 
     @Override
