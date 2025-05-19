@@ -7,9 +7,9 @@ package com.dianpoint.summer.validation;
  */
 
 public class ValidationResult {
-    private boolean success;
-    private String errorMessage;
-    private String fieldName;
+    private final boolean success;
+    private final String errorMessage;
+    private final String fieldName;
 
     public ValidationResult(boolean success, String errorMessage, String fieldName) {
         this.success = success;
