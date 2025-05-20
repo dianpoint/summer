@@ -1,6 +1,8 @@
 package com.dianpoint.summer.validation;
 
+import com.dianpoint.summer.validation.validator.AnnotationValidatorAdapter;
 import com.dianpoint.summer.validation.validator.GenericValidator;
+import com.dianpoint.summer.validation.validator.Validator;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -32,10 +34,14 @@ public final class Validators {
                 .addRule(Objects::nonNull, "整数不能为空", "integer");
     }
 
-    public <T> ValidationRule<T> rule(Predicate<T> condition, String errorMessage, String fieldName) {
+    public static <T> ValidationRule<T> rule(Predicate<T> condition, String errorMessage, String fieldName) {
         return target -> condition.test(target) ?
                 ValidationResult.success() :
                 ValidationResult.failure(errorMessage, fieldName);
+    }
+
+    public static <T> Validator<T> annotated(Class<T> targetClass) {
+        return AnnotationValidatorAdapter.create(targetClass);
     }
 
 

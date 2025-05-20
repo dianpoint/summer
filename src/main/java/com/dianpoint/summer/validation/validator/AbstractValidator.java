@@ -69,6 +69,7 @@ public abstract class AbstractValidator<T> implements Validator<T> {
         return validate(target).isEmpty();
     }
 
+    @Override
     public Validator<T> skipOnFirstFailure(boolean skipOnFirstFailure) {
         this.skipOnFirstFailure = skipOnFirstFailure;
         return this;
