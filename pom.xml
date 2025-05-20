@@ -7,6 +7,11 @@
     <groupId>com.dianpoint.summer</groupId>
     <artifactId>summer</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>summer-beans</module>
+        <module>summer-validator</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
