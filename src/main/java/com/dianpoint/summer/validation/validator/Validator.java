@@ -24,4 +24,6 @@ public interface Validator<T> {
 
     boolean isValid(T target);
 
+    Validator<T> skipOnFirstFailure(boolean skip);
+
 }
