@@ -4,6 +4,7 @@ package com.dianpoint.summer.validator.test;
 import com.dianpoint.summer.validator.ValidationResult;
 import com.dianpoint.summer.validator.ValidationRules;
 import com.dianpoint.summer.validator.Validators;
+import com.dianpoint.summer.validator.test.cases.User;
 
 import java.util.List;
 
@@ -15,11 +16,13 @@ import java.util.List;
 
 public class ValidatorDemo {
     public static void main(String[] args) {
-        validateEmail("congccoder@gmail.com");
-        validateEmail("congccoder@dianpoint.com");
+//        validateEmail("congccoder@gmail.com");
+//        validateEmail("congccoder@dianpoint.com");
+//
+//        validateAge(16);
+//        validateAge(21);
 
-        validateAge(16);
-        validateAge(21);
+        validateObject();
     }
 
     static void validateEmail(String email) {
@@ -38,6 +41,15 @@ public class ValidatorDemo {
                 .addRule(ValidationRules.min(14))
                 .addRule(num -> num <= 15, "自定义错误信息:青少年年龄", "age")
                 .validate(age);
+        printResults(validationResults);
+    }
+
+    static void validateObject() {
+        User user = new User(null, "");
+        List<ValidationResult> validationResults = Validators
+                .annotated(User.class)
+                .skipOnFirstFailure(false)
+                .validate(user);
         printResults(validationResults);
     }
 

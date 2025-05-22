@@ -3,6 +3,7 @@ package com.dianpoint.summer.validator.validator;
 
 import com.dianpoint.summer.validator.ValidationResult;
 import com.dianpoint.summer.validator.ValidationRule;
+import com.dianpoint.summer.validator.utils.AnnotationProcessingUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,8 +45,17 @@ public class AnnotationValidatorAdapter<T> implements Validator<T> {
 
     @Override
     public List<ValidationResult> validate(T target) {
-        //TODO 处理注解类校验
-        return Collections.emptyList();
+        if (target == null) {
+            return java.util.Collections.singletonList(
+                    ValidationResult.failure("校验对象不能为null", "object"));
+        }
+        List<ValidationResult> results = AnnotationProcessingUtils.processAnnotations(target);
+
+        if (skipOnFirstFailure && !results.isEmpty()) {
+            return java.util.Collections.singletonList(results.get(0));
+        }
+
+        return results;
     }
 
     @Override
