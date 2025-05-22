@@ -2,13 +2,10 @@ package com.dianpoint.summer.test.xml;
 
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
-import com.dianpoint.summer.beans.factory.support.DefaultListableBeanFactory;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
-import com.dianpoint.summer.test.service.SimpleService;
 import com.dianpoint.summer.test.xml.beans.AutowiredCodeService;
 import com.dianpoint.summer.test.xml.beans.AutowiredService;
 import com.dianpoint.summer.test.xml.beans.BaseService;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
-package com.dianpoint.summer.test.validator.cases;
+package com.dianpoint.summer.validator.test.cases;
 
-import com.dianpoint.summer.validation.annotations.NotNull;
-import com.dianpoint.summer.validation.annotations.Pattern;
+import com.dianpoint.summer.validator.annotations.NotNull;
+import com.dianpoint.summer.validator.annotations.Pattern;
 
 /**
  * @author: congccoder

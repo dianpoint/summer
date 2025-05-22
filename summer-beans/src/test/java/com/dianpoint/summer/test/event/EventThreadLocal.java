@@ -1,1 +1,0 @@
-package com.dianpoint.summer.test.event;

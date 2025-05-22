@@ -1,8 +1,9 @@
-package com.dianpoint.summer.test.validator;
+package com.dianpoint.summer.validator.test;
 
-import com.dianpoint.summer.validation.ValidationResult;
-import com.dianpoint.summer.validation.ValidationRules;
-import com.dianpoint.summer.validation.Validators;
+
+import com.dianpoint.summer.validator.ValidationResult;
+import com.dianpoint.summer.validator.ValidationRules;
+import com.dianpoint.summer.validator.Validators;
 
 import java.util.List;
 
