@@ -1,8 +1,8 @@
 package com.dianpoint.summer.validator;
 
-import com.dianpoint.summer.validation.validator.AnnotationValidatorAdapter;
-import com.dianpoint.summer.validation.validator.GenericValidator;
-import com.dianpoint.summer.validation.validator.Validator;
+import com.dianpoint.summer.validator.validator.AnnotationValidatorAdapter;
+import com.dianpoint.summer.validator.validator.GenericValidator;
+import com.dianpoint.summer.validator.validator.Validator;
 
 import java.util.Objects;
 import java.util.function.Predicate;

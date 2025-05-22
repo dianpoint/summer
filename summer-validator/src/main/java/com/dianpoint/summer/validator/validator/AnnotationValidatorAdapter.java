@@ -1,10 +1,8 @@
 package com.dianpoint.summer.validator.validator;
 
-import com.dianpoint.summer.validation.ValidationResult;
-import com.dianpoint.summer.validation.ValidationRule;
-import com.dianpoint.summer.validation.Validators;
-import com.dianpoint.summer.validation.processor.AnnotationProcessor;
-import com.sun.tools.javac.comp.Todo;
+
+import com.dianpoint.summer.validator.ValidationResult;
+import com.dianpoint.summer.validator.ValidationRule;
 
 import java.util.Collections;
 import java.util.List;

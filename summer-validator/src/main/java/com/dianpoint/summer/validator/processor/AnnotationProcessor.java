@@ -1,6 +1,6 @@
 package com.dianpoint.summer.validator.processor;
 
-import com.dianpoint.summer.validation.ValidationResult;
+import com.dianpoint.summer.validator.ValidationResult;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

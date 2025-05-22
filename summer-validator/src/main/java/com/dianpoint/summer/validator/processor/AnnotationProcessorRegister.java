@@ -1,9 +1,9 @@
 package com.dianpoint.summer.validator.processor;
 
-import com.dianpoint.summer.validation.annotations.NotNull;
-import com.dianpoint.summer.validation.annotations.Pattern;
-import com.dianpoint.summer.validation.constraintvalidators.NotNullProcessor;
-import com.dianpoint.summer.validation.constraintvalidators.PatternProcessor;
+import com.dianpoint.summer.validator.annotations.NotNull;
+import com.dianpoint.summer.validator.annotations.Pattern;
+import com.dianpoint.summer.validator.constraintvalidators.NotNullProcessor;
+import com.dianpoint.summer.validator.constraintvalidators.PatternProcessor;
 
 import java.lang.annotation.Annotation;
 import java.util.HashMap;

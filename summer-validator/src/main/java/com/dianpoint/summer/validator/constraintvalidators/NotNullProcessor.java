@@ -1,8 +1,9 @@
 package com.dianpoint.summer.validator.constraintvalidators;
 
-import com.dianpoint.summer.validation.ValidationResult;
-import com.dianpoint.summer.validation.annotations.NotNull;
-import com.dianpoint.summer.validation.processor.AnnotationProcessor;
+
+import com.dianpoint.summer.validator.ValidationResult;
+import com.dianpoint.summer.validator.annotations.NotNull;
+import com.dianpoint.summer.validator.processor.AnnotationProcessor;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
