@@ -6,6 +6,7 @@ import com.dianpoint.summer.validator.ValidationRules;
 import com.dianpoint.summer.validator.Validators;
 import com.dianpoint.summer.validator.test.cases.User;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,7 +23,9 @@ public class ValidatorDemo {
 //        validateAge(16);
 //        validateAge(21);
 
-        validateObject();
+//        validateObject();
+
+        validateCollectionString();
     }
 
     static void validateEmail(String email) {
@@ -50,6 +53,20 @@ public class ValidatorDemo {
                 .annotated(User.class)
                 .skipOnFirstFailure(false)
                 .validate(user);
+        printResults(validationResults);
+    }
+
+
+    static void validateCollectionString() {
+        List<String> strList = Arrays.asList("张三", "李四", "", null, "王五", "小王");
+        List<ValidationResult> validationResults = Validators.collection(List.class, String.class)
+                .elementRule(str -> str != null, "元素不等为null")
+                .elementRule(str -> str.isEmpty(), "元素不能为空字符串")
+                .addRule(ValidationRules.minsize(1))
+                .addRule(ValidationRules.maxSize(10))
+                .addRule(ValidationRules.range(3, 5))
+                .validate(strList);
+
         printResults(validationResults);
     }
 
