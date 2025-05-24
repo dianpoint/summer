@@ -41,4 +41,37 @@ public interface CollectionValidator<E, C extends Collection<E>> extends Validat
      */
     CollectionValidator<E, C> elementValidator(Validator<E> validator);
 
+    //为集合类型增加addRule 避免使用时访问的是接口validator
+
+
+    /**
+     * 为集合添加校验规则
+     *
+     * @param rule 校验规则
+     * @return 当前校验器实例 支持链式调用
+     */
+    @Override
+    CollectionValidator<E, C> addRule(ValidationRule<C> rule);
+
+    /**
+     * 为集合添加基于predicate的校验规则
+     *
+     * @param condition    集合
+     * @param errorMessage 校验失败时的错误信息
+     * @return 当前校验器实例，支持链式调用
+     */
+    @Override
+    CollectionValidator<E, C> addRule(Predicate<C> condition, String errorMessage);
+
+
+    /**
+     * 为集合添加基于predicate的校验规则
+     *
+     * @param condition    集合
+     * @param errorMessage 校验失败时的错误信息
+     * @param fieldName    字段名
+     * @return 当前校验器失败，支持链式调用
+     */
+    @Override
+    CollectionValidator<E, C> addRule(Predicate<C> condition, String errorMessage, String fieldName);
 }

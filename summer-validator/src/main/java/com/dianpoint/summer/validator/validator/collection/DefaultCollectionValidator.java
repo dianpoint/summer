@@ -28,6 +28,24 @@ public class DefaultCollectionValidator<E, C extends Collection<E>> extends Abst
 
 
     @Override
+    public CollectionValidator<E, C> addRule(ValidationRule<C> rule) {
+        super.addRule(rule);
+        return this;
+    }
+
+    @Override
+    public CollectionValidator<E, C> addRule(Predicate<C> condition, String errorMessage) {
+        super.addRule(condition, errorMessage);
+        return this;
+    }
+
+    @Override
+    public CollectionValidator<E, C> addRule(Predicate<C> condition, String errorMessage, String fieldName) {
+        super.addRule(condition, errorMessage, fieldName);
+        return this;
+    }
+
+    @Override
     public CollectionValidator<E, C> elementRule(ValidationRule<E> rule) {
         if (elementValidator == null) {
             //初始化元素校验器
@@ -65,7 +83,7 @@ public class DefaultCollectionValidator<E, C extends Collection<E>> extends Abst
             for (ValidationResult elementResult : elementResults) {
                 if (elementResult.isFailure()) {
                     results.add(ValidationResult.failure(String.format("元素[%s]:%s collection[%s]", index
-                            , elementResult.getErrorMessage(), index)));
+                            , elementResult.getErrorMessage(), index), "collection"));
                 }
             }
             index++;
