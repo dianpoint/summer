@@ -11,8 +11,7 @@ import java.lang.annotation.Target;
  * @date: 2025/5/20 21:10
  */
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.TYPE})
+@HandlesAnnotation(value = NotNull.class)
 public @interface NotNull {
 
     String message() default "不能为空";

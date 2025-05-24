@@ -11,8 +11,7 @@ import java.lang.annotation.Target;
  * @date: 2025/5/20 21:11
  */
 
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.TYPE})
+@HandlesAnnotation(value = Pattern.class)
 public @interface Pattern {
 
     String regex();
