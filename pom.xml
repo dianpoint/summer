@@ -11,6 +11,7 @@
     <modules>
         <module>summer-beans</module>
         <module>summer-validator</module>
+        <module>summer-engines</module>
     </modules>
 
     <properties>
@@ -60,6 +61,11 @@
                 <artifactId>servlet-api</artifactId>
                 <version>${servlet-api.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.12</version>
             </dependency>
 
 
