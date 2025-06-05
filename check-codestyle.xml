@@ -9,6 +9,7 @@
         <!--org.eclipse.jdt.core.formatter.insert_space_before_comma_in_method_invocation_arguments=Java:SPACE_BEFORE_COMMA-->
         <!--org.eclipse.jdt.core.formatter.insert_space_before_comma_in_method_declaration_parameters=Java:SPACE_BEFORE_COMMA
         由于IDEA只有一个SPACE_BEFORE_COMMA选项，所以统一设置 insert_space_before_comma 为 do not insert
+
         -->
         <setting id="org.eclipse.jdt.core.formatter.insert_space_before_comma_in_method_declaration_parameters"
                  value="do not insert"/>
