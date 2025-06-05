@@ -12,6 +12,7 @@
         <module>summer-beans</module>
         <module>summer-validator</module>
         <module>summer-engines</module>
+        <module>summer-java-core</module>
     </modules>
 
     <properties>
