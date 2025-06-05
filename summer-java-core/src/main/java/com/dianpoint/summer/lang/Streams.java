@@ -7,4 +7,6 @@ package com.dianpoint.summer.lang;
  */
 
 public interface Streams {
+
+
 }
