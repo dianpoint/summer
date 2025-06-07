@@ -26,7 +26,7 @@ public interface ThrowableConsumer<T> {
      * @param t 入参
      */
     default void execute(T t) {
-
+        execute(t, this::handleException);
     }
 
     default void execute(T t, BiConsumer<T, Throwable> exceptionHandler) throws NullPointerException {
@@ -45,6 +45,6 @@ public interface ThrowableConsumer<T> {
     default void execute(T t, ThrowableConsumer<T> consumer, BiConsumer<T, Throwable> exceptionHandler)
             throws NullPointerException {
         AssertUtils.assertNotNull(exceptionHandler, () -> "The 'exceptionHandler' must not be null");
-        consumer.execute(t,exceptionHandler);
+        consumer.execute(t, exceptionHandler);
     }
 }
