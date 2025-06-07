@@ -55,7 +55,7 @@ public interface Streams {
     }
 
 
-    static <T, S extends Iterable<T>> S filterAll(S values, Predicate<? super T> predicate) {
+    static <T, S extends Iterable<T>> S filter(S values, Predicate<? super T> predicate) {
         boolean isSet = SetUtils.isSet(values);
         if (isSet) {
             return (S) filterSet(values, predicate);
@@ -65,6 +65,43 @@ public interface Streams {
 
 
     //filter逻辑操作
+
+    //通用的filter过滤方法，对于集合iterable类型进行过滤处理
+    static <T, S extends Iterable<T>> S filterAll(S values, Predicate<? super T>... predicates) {
+        return filter(values, Predicates.and(predicates));
+    }
+
+    //对iterable进行逻辑and 逻辑or处理
+
+    static <T> List<T> filterAllList(T[] values, Predicate<? super T>... predicates) {
+        return filterAll(Arrays.asList(values), predicates);
+    }
+
+    static <T> Set<T> filterAllSet(T[] values, Predicate<? super T>... predicates) {
+        return filterAll(SetUtils.ofSet(values), predicates);
+    }
+
+
+    static <T, S extends Iterable<T>> S filterAny(S values, Predicate<? super T>... predicates) {
+        return filter(values, Predicates.or(predicates));
+    }
+
+    static <T> List<T> filterAnyList(T[] values, Predicate<? super T>... predicates) {
+        return filterAny(Arrays.asList(values), predicates);
+    }
+
+    static <T> Set<T> filterAnySet(T[] values, Predicate<? super T>... predicates) {
+        return filterAny(SetUtils.ofSet(values), predicates);
+    }
+
+
+    //再添加一个findFirst方法
+    static <T> T filterFirst(Iterable<T> values, Predicate<T>... predicates) {
+        return StreamSupport.stream(values.spliterator(), false)
+                .filter(Predicates.and(predicates))
+                .findFirst()
+                .orElse(null);
+    }
 
 
 }
