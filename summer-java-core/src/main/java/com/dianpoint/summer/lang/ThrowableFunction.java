@@ -46,5 +46,15 @@ public interface ThrowableFunction<T, R> {
         return execute(t, function, function::handlerException);
     }
 
+    default <V> ThrowableFunction<V, R> compose(ThrowableFunction<? super V, ? extends T> before) {
+        AssertUtils.assertNotNull(before, "The 'before' must not be null");
+        return (V v) -> apply(before.apply(v));
+    }
+
+    default <V> ThrowableFunction<T, V> andThen(ThrowableFunction<? super R, ? extends V> after) {
+        AssertUtils.assertNotNull(after, "The 'after' must not be null");
+        return (T t) -> after.apply(apply(t));
+    }
+
 
 }
