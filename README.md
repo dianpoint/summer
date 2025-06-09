@@ -71,8 +71,24 @@ the status, progress, and related information of main and sub-tasks.
 ## Getting Started
 
 ### Prerequisites
+Make sure you have Java and Maven installed in your development environment.
 
 ### Installation
+
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/dianpoint/summer.git
+
+```
+
+Navigate to the project directory and build the project:
+
+```bash
+cd summer
+mvn clean install
+```
+
 
 ## Usage
 
