@@ -48,14 +48,25 @@ Summer is a minimized AOP (Aspect-Oriented Programming) and IoC (Inversion of Co
 
 ### Validation Module
 
-+ Rich Validation Rules: The validation module offers a wide range of validation rules, including length checks, regular expression matching, and 
++ **Rich Validation Rules**: The validation module offers a wide range of validation rules, including length checks, regular expression matching, and 
 collection size validations. For example, you can easily validate strings for minimum and maximum lengths, and collections for size ranges.
 
-+ Annotation-Based Validation: Supports annotation-based validation. You can use custom annotations to mark fields in classes and perform 
++ **Annotation-Based Validation**: Supports annotation-based validation. You can use custom annotations to mark fields in classes and perform 
   validation operations on objects. For instance, use the @NotNull and @Pattern annotations to validate user-defined objects.
 
-+ +Collection Validation: Provides specific validation capabilities for collections. You can set validation rules for the entire collection as well 
++ **Collection Validation**: Provides specific validation capabilities for collections. You can set validation rules for the entire collection as 
+  well 
   as for each element in the collection.
+
+
+### Batch Task Processing Module
+
++ **Main and Sub-Task Management**: Includes entities such as MainTask and SubTask, and corresponding data access objects (MainTaskDao). It can 
+  manage 
+the status, progress, and related information of main and sub-tasks.
+
++ **Task Monitoring and Recovery**: The TaskWatchdog class periodically checks for stuck tasks and attempts to recover them, ensuring the reliability 
+  of task processing.
 
 ## Getting Started
 
