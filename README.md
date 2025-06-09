@@ -44,6 +44,19 @@ English | [中文](README_cn.md)
 
 ## About The Project
 
+Summer is a minimized AOP (Aspect-Oriented Programming) and IoC (Inversion of Control) kernel tool library. It provides a set of validators and related utility classes to simplify the validation logic of objects and collections. Additionally, it includes some functions for batch task processing.
+
+### Validation Module
+
++ Rich Validation Rules: The validation module offers a wide range of validation rules, including length checks, regular expression matching, and 
+collection size validations. For example, you can easily validate strings for minimum and maximum lengths, and collections for size ranges.
+
++ Annotation-Based Validation: Supports annotation-based validation. You can use custom annotations to mark fields in classes and perform 
+  validation operations on objects. For instance, use the @NotNull and @Pattern annotations to validate user-defined objects.
+
++ +Collection Validation: Provides specific validation capabilities for collections. You can set validation rules for the entire collection as well 
+  as for each element in the collection.
+
 ## Getting Started
 
 ### Prerequisites
