@@ -4,17 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.dianpoint.summer</groupId>
-        <artifactId>summer</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>io.github.dianpoint</groupId>
+        <artifactId>summer-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../summer-parent/pom.xml</relativePath>
     </parent>
 
+    <groupId>io.github.dianpoint</groupId>
     <artifactId>summer-validator</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>summer-validator</name>
+    <description>Summer Java Validator</description>
+
 
 </project>

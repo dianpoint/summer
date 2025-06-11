@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="baseService" class="com.dianpoint.summer.test.xml.beans.BaseService">
+    <bean id="baseService" class="beans.xml.test.com.dianpoint.summer.core.BaseService">
         <!-- 构造器方式注入  -->
     </bean>
 
-    <bean id="autowiredService" class="com.dianpoint.summer.test.xml.beans.AutowiredService">
+    <bean id="autowiredService" class="beans.xml.test.com.dianpoint.summer.core.AutowiredService">
         <!-- 构造器方式注入  -->
     </bean>
 </beans>

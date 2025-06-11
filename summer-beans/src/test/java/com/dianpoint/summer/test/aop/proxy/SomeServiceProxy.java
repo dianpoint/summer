@@ -2,8 +2,6 @@ package com.dianpoint.summer.test.aop.proxy;
 
 import com.dianpoint.summer.aop.ProxyFactoryBean;
 import com.dianpoint.summer.beans.BeansException;
-import com.dianpoint.summer.beans.factory.BeanFactory;
-import com.dianpoint.summer.beans.factory.FactoryBean;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
