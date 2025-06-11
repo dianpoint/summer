@@ -22,7 +22,7 @@
     <!--    </bean>-->
 
     <!-- 添加代理实现SomeServiceImpl中的action方法 -->
-    <bean id="someService" class="com.dianpoint.summer.test.aop.proxy.SomeServiceImpl"/>
+    <bean id="someService" class="proxy.aop.test.com.dianpoint.summer.core.SomeServiceImpl"/>
     <bean id="proxyAction" class="com.dianpoint.summer.aop.ProxyFactoryBean">
         <property type="java.lang.Object" name="target" ref="someService"/>
     </bean>

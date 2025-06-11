@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>io.github.dianpoint</groupId>
         <artifactId>summer-build</artifactId>
@@ -11,23 +10,12 @@
     </parent>
 
 
-    <properties>
-        <revision>0.1.0-SNAPSHOT</revision>
-    </properties>
 
-    <groupId>com.dianpoint.summer</groupId>
+    <groupId>io.github.dianpoint</groupId>
     <artifactId>summer</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
 
-
-    <modules>
-        <module>summer-beans</module>
-        <module>summer-validator</module>
-        <module>summer-engines</module>
-        <module>summer-java-core</module>
-        <module>summer-parent</module>
-    </modules>
 
 
     <name>Summer</name>
@@ -36,8 +24,8 @@
 
 
     <organization>
-        <name>Microsphere</name>
-        <url>https://github.com/microsphere-projects</url>
+        <name>DianPoint</name>
+        <url>https://github.com/dianpoint</url>
     </organization>
 
     <licenses>
@@ -66,6 +54,18 @@
         <connection>scm:git:${project.scm.url}</connection>
         <developerConnection>scm:git:ssh://${project.scm.url}</developerConnection>
     </scm>
+
+    <properties>
+        <revision>0.1.0-SNAPSHOT</revision>
+    </properties>
+
+    <modules>
+        <module>summer-beans</module>
+        <module>summer-validator</module>
+        <module>summer-engines</module>
+        <module>summer-java-core</module>
+        <module>summer-parent</module>
+    </modules>
 
     <distributionManagement>
         <snapshotRepository>

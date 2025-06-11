@@ -5,7 +5,6 @@ import com.dianpoint.summer.validator.ValidationResult;
 import com.dianpoint.summer.validator.ValidationRule;
 import com.dianpoint.summer.validator.utils.AnnotationProcessingUtils;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 

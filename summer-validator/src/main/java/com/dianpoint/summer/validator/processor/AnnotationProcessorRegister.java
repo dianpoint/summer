@@ -1,10 +1,6 @@
 package com.dianpoint.summer.validator.processor;
 
 import com.dianpoint.summer.validator.annotations.HandlesAnnotation;
-import com.dianpoint.summer.validator.annotations.NotNull;
-import com.dianpoint.summer.validator.annotations.Pattern;
-import com.dianpoint.summer.validator.constraintvalidators.NotNullProcessor;
-import com.dianpoint.summer.validator.constraintvalidators.PatternProcessor;
 import com.dianpoint.summer.validator.utils.ClassScanner;
 
 import java.lang.annotation.Annotation;
