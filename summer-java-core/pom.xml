@@ -5,16 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.dianpoint.summer</groupId>
-        <artifactId>summer</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <artifactId>summer-parent</artifactId>
+        <version>${revision}</version>
+        <relativePath>../summer-parent/pom.xml</relativePath>
     </parent>
 
+    <groupId>com.dianpoint.summer</groupId>
     <artifactId>summer-java-core</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+
+    <name>summer-java-core</name>
+    <description>Summer Java Core</description>
+
 
 </project>
