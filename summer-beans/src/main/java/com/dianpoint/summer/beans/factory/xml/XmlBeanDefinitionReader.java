@@ -1,6 +1,7 @@
 package com.dianpoint.summer.beans.factory.xml;
 
-import com.dianpoint.summer.beans.*;
+import com.dianpoint.summer.beans.PropertyValue;
+import com.dianpoint.summer.beans.PropertyValues;
 import com.dianpoint.summer.beans.factory.config.BeanDefinition;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValues;

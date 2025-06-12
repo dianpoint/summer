@@ -7,7 +7,6 @@ import com.dianpoint.summer.validator.validator.collection.CollectionValidator;
 import com.dianpoint.summer.validator.validator.collection.DefaultCollectionValidator;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 

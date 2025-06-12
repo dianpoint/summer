@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="circularDependencyEndService" class="com.dianpoint.summer.test.xml.beans.CircularDependencyEndService">
+    <bean id="circularDependencyEndService" class="beans.xml.test.com.dianpoint.summer.core.CircularDependencyEndService">
         <constructor-arg type="String" name="remark" value="这是循环依赖的End"/>
         <!-- 属性对象注入  -->
-        <property type="com.dianpoint.summer.test.xml.beans.CircularDependencyStartService" name="circularDependencyStartService"
+        <property type="beans.xml.test.com.dianpoint.summer.core.CircularDependencyStartService" name="circularDependencyStartService"
                   ref="circularDependencyStartService"/>
     </bean>
-    <bean id="circularDependencyStartService" class="com.dianpoint.summer.test.xml.beans.CircularDependencyStartService">
+    <bean id="circularDependencyStartService" class="beans.xml.test.com.dianpoint.summer.core.CircularDependencyStartService">
         <constructor-arg type="String" name="remark" value="这是循环依赖的Start"/>
         <!-- 属性对象注入  -->
-        <property type="com.dianpoint.summer.test.xml.beans.CircularDependencyEndService" name="circularDependencyEndService"
+        <property type="beans.xml.test.com.dianpoint.summer.core.CircularDependencyEndService" name="circularDependencyEndService"
                   ref="circularDependencyEndService"/>
     </bean>
 

@@ -4,55 +4,51 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.dianpoint.summer</groupId>
-        <artifactId>summer</artifactId>
-        <version>0.1-SNAPSHOT</version>
+        <groupId>io.github.dianpoint</groupId>
+        <artifactId>summer-parent</artifactId>
+        <version>{revision}</version>
+        <relativePath>../summer-parent/pom.xml</relativePath>
     </parent>
 
+    <groupId>io.github.dianpoint</groupId>
     <artifactId>summer-beans</artifactId>
+    <version>${revision}</version>
+    <packaging>jar</packaging>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <name>summer-beans</name>
+    <description>Summer Java Beans</description>
+
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
         <dependency>
             <groupId>org.dom4j</groupId>
             <artifactId>dom4j</artifactId>
-            <version>2.1.4</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
-            <version>${fasterxml.jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${fasterxml.jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${fasterxml.jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jdk8</artifactId>
-            <version>${fasterxml.jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>${fasterxml.jackson.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
-            <version>${servlet-api.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -70,9 +66,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.dianpoint.summer</groupId>
+            <groupId>io.github.dianpoint</groupId>
             <artifactId>summer-validator</artifactId>
-            <version>0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
 

@@ -18,7 +18,7 @@
 <!--    </beans>-->
 
 
-    <bean id="propertiesBean" class="com.dianpoint.summer.test.xml.beans.PropertiesTestBean">
+    <bean id="propertiesBean" class="beans.xml.test.com.dianpoint.summer.core.PropertiesTestBean">
         <!-- 默认为string -->
         <property name="username" value="propertiesBean"/>
         <property name="age" type="java.lang.Integer" value='30'/>
@@ -36,7 +36,7 @@
 
 
 
-    <bean id="propertiesBeanRef" class="com.dianpoint.summer.test.xml.beans.PropertiesTestBean">
+    <bean id="propertiesBeanRef" class="beans.xml.test.com.dianpoint.summer.core.PropertiesTestBean">
         <!-- 把theFool赋值给username -->
         <!-- 把theFool赋值给password -->
         <property type="String" name="username" ref="theFool"/>
