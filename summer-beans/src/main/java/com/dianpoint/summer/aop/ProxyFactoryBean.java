@@ -2,6 +2,7 @@ package com.dianpoint.summer.aop;
 
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.factory.BeanFactory;
+import com.dianpoint.summer.beans.factory.BeanFactoryAware;
 import com.dianpoint.summer.beans.factory.FactoryBean;
 import com.dianpoint.summer.util.ClassUtils;
 
@@ -10,7 +11,7 @@ import com.dianpoint.summer.util.ClassUtils;
  * @email: congccoder@gmail.com
  * @date: 2023/3/26 21:18
  */
-public class ProxyFactoryBean implements FactoryBean<Object> {
+public class ProxyFactoryBean implements FactoryBean<Object>, BeanFactoryAware {
 
     private BeanFactory beanFactory;
     private AopProxyFactory aopProxyFactory;
@@ -23,8 +24,12 @@ public class ProxyFactoryBean implements FactoryBean<Object> {
 
 
     public ProxyFactoryBean() {
-        // 默认才用Jdk Dynamic 代理来实现AOP 可在此进行扩展
         this.aopProxyFactory = new DefaultAopProxyFactory();
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) {
+        this.beanFactory = beanFactory;
     }
 
     @Override
@@ -33,6 +38,9 @@ public class ProxyFactoryBean implements FactoryBean<Object> {
     }
 
     private synchronized void initializeAdvisor() {
+        if (this.interceptorName == null || this.beanFactory == null) {
+            return;
+        }
         Object advice = null;
         MethodInterceptor methodInterceptor = null;
         try {
@@ -69,21 +77,10 @@ public class ProxyFactoryBean implements FactoryBean<Object> {
         return getAopProxyFactory().createAopProxy(target, this.advisor);
     }
 
-    /**
-     * 通过AopProxy接口获取代理类,实现方式为AopProxy接口实现的DefaultAopProxyFactory或者其余可扩展的代理工厂类
-     *
-     * @param aopProxy aopProxy
-     * @return 代理结果
-     */
     public Object getProxy(AopProxy aopProxy) {
         return aopProxy.getProxy();
     }
 
-    /**
-     * 获取代理对象的单例bean
-     *
-     * @return 单例Bean
-     */
     public synchronized Object getSingletonInstance() {
         if (this.singletonInstance == null) {
             initializeAdvisor();

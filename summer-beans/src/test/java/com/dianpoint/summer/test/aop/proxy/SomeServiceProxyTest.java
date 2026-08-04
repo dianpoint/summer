@@ -5,19 +5,20 @@ import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
-/**
- * @author: github/ccoderJava
- * @email: congccoder@gmail.com
- * @date: 2023/3/26 21:36
- */
-public class SomeServiceProxy {
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class SomeServiceProxyTest {
 
     @Test
     public void testProxy() throws BeansException {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
-        ProxyFactoryBean proxyAction = (ProxyFactoryBean)applicationContext.getBean("proxyAction");
+        ProxyFactoryBean proxyAction = (ProxyFactoryBean) applicationContext.getBean("proxyAction");
         SomeService someService = (SomeService) proxyAction.getSingletonInstance();
-        someService.action();
+
+        assertThat(someService).isNotNull();
+        assertThat(someService).isInstanceOf(SomeService.class);
+        assertThat(proxyAction.getTarget()).isNotNull();
+        assertThat(proxyAction.getTarget()).isInstanceOf(SomeService.class);
     }
 
 }
