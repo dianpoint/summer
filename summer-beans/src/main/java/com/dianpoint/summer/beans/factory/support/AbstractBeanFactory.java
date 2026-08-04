@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import com.dianpoint.summer.beans.BeansException;
 import com.dianpoint.summer.beans.PropertyValue;
 import com.dianpoint.summer.beans.PropertyValues;
+import com.dianpoint.summer.beans.factory.BeanFactoryAware;
 import com.dianpoint.summer.beans.factory.config.BeanDefinition;
 import com.dianpoint.summer.beans.factory.config.ConfigurableBeanFactory;
 import com.dianpoint.summer.beans.factory.config.ConstructorArgumentValue;
@@ -213,6 +214,10 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry
         }
         // 处理ref属性
         handleProperties(beanDefinition, clazz, object);
+
+        if (object instanceof BeanFactoryAware) {
+            ((BeanFactoryAware) object).setBeanFactory(this);
+        }
         return object;
     }
 
